@@ -63,7 +63,6 @@ void List::delete_item()
 {
     clear_screen();
     std::cout << "*** Delete Item ***\n";
-    std::cout << "Select an item index number to delete\n";
 
     if(list.size())
     {
@@ -71,13 +70,22 @@ void List::delete_item()
         {
             std::cout << list_index << ": " << list[list_index] << "\n";
         }
+
+        int choiceNum;
+        std::cout << "Select an item index number to delete.\nInput: ";
+        if(std::cin >> choiceNum)
+        {
+            list.erase(list.begin() + choiceNum);
+        }
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     else
     {
         std::cout << "No items in the list or to delete.\n";
+        wait_for_keypress();
     }
-
-    wait_for_keypress();
 
     print_menu();
 }
