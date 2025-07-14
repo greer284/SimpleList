@@ -11,7 +11,8 @@ void List::print_menu()
     std::cout << " 1 - Print list.\n";
     std::cout << " 2 - Add to list.\n";
     std::cout << " 3 - Delete from list.\n";
-    std::cout << " 4 - Quit.\n";
+    std::cout << " 4 - Save list.\n";
+    std::cout << " 5 - Quit.\n";
     std::cout << "***********************\n"; 
     std::cout << "Input: ";
 
@@ -22,9 +23,11 @@ void List::print_menu()
 
     switch (choice)
     {
-    case 4:
-        std::cout << "Quitting...\n";
+    case 5:
         return;
+    case 4:
+        save_list();
+        break;
     case 3:
         delete_item();
         break;
@@ -51,7 +54,7 @@ void List::add_item()
 
     list.push_back(item);
 
-    std::cout << "Successfully added an item to the list.";
+    std::cout << "Successfully added an item to the list.\n";
     std::cin.clear();
     wait_for_keypress();
 
@@ -128,6 +131,7 @@ bool List::find_userList() {
         {
             std::cout << "User has been found: " << mainList[user_index][0] << '\n';
             list = mainList[user_index];
+            currentUserIndex = user_index;
             userFound = true;
             break;
         }
@@ -145,7 +149,7 @@ bool List::find_userList() {
 
 void List::save_list()
 {
-   std::cout << "Saving the list...\n"; 
+   std::cout << "Saving the list... (database will update when quitting the application)\n"; 
    mainList[currentUserIndex] = list;
 
    wait_for_keypress();
