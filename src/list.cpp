@@ -115,7 +115,7 @@ void List::print_list() {
     }
 }
 
-void List::find_userList() {
+bool List::find_userList() {
     bool userFound = false;
 
     clear_screen();
@@ -132,7 +132,24 @@ void List::find_userList() {
             break;
         }
     }
-    
+
+    if(userFound == false)
+    {
+        list.push_back(name);
+        mainList.push_back(list);
+        currentUserIndex = mainList.size() - 1; 
+    }
+
+    return userFound;
+}
+
+void List::save_list()
+{
+   std::cout << "Saving the list...\n"; 
+   mainList[currentUserIndex] = list;
+
+   wait_for_keypress();
+   print_menu();
 }
 
 void List::clear_screen()
@@ -145,7 +162,10 @@ void List::wait_for_keypress()
 {
     TermUtils temp;
     temp.initTermios(0);
+
+    std::cout << "Press any key to continue.";
     std::cin.get();
     std::cin.clear();
+
     temp.resetTermios();
 }

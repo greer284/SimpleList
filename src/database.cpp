@@ -10,12 +10,19 @@ void Database::write(std::vector<std::vector<std::string>> mainList)
     // check if file successfully opened
     if(db.is_open())
     {
-        for (size_t user_index=0; user_index < mainList[user_index].size(); user_index++)
+        for (size_t user_index=0; user_index < mainList.size(); user_index++)
         {
-            for (size_t list_index=0; list_index < mainList[user_index][list_index].size(); list_index++)
+            for (size_t list_index=0; list_index < mainList[user_index].size(); list_index++)
             {
-                db << mainList[user_index][list_index] << '\n';
+                if (list_index == 0)
+                {
+                    db << '#' << mainList[user_index][list_index] << '\n';
+                } else
+                {
+                    db << mainList[user_index][list_index] << '\n';
+                }
             }
+            db << "%\n";
         }
     } else 
     {

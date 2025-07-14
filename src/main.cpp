@@ -12,7 +12,7 @@ int main(int arg_count, char *args[])
         simple_list.mainList = data.read();
         simple_list.find_userList();
         simple_list.print_menu();
-        // data.write(simple_list.list);
+        data.write(simple_list.mainList);
     }
     else
     {
