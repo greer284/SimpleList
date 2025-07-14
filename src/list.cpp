@@ -24,8 +24,7 @@ void List::print_menu()
     {
     case 4:
         std::cout << "Quitting...\n";
-        exit(0);
-        break;
+        return;
     case 3:
         delete_item();
         break;
