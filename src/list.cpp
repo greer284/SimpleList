@@ -133,6 +133,8 @@ bool List::find_userList() {
             list = mainList[user_index];
             currentUserIndex = user_index;
             userFound = true;
+
+            wait_for_keypress();
             break;
         }
     }
@@ -149,9 +151,9 @@ bool List::find_userList() {
 
 void List::save_list()
 {
-   std::cout << "Saving the list... (database will update when quitting the application)\n"; 
+   std::cout << "Saving the list...\n"; 
    mainList[currentUserIndex] = list;
-
+   data.write(mainList);
    wait_for_keypress();
    print_menu();
 }
