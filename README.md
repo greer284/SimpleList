@@ -7,7 +7,7 @@ The YouTube tutorial followed is linked [here](https://www.youtube.com/watch?v=V
 
 ## The Program
 
-This program allows users to add to, remove from, and print out string data from a list.
+This program allows users to add to, remove from, and print out string data from a list. This data can be stored to and loaded from a user database, with each user having their own personal list data.
 
 ## Installation Instructions
 
