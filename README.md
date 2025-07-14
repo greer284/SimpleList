@@ -13,3 +13,8 @@ This program allows users to add to, remove from, and print out string data from
 
 ### Linux
 ```cd``` into the repository folder location and use the ```make``` command to generate the executable file.
+
+## How to Run the Program
+
+This program must be run via the command line. Please provide a username when running the executable.
+```./SimpleList UserName```
