@@ -1,6 +1,6 @@
 #include "include/database.h"
 
-void Database::write(std::vector<std::string> list)
+void Database::write(std::vector<std::vector<std::string>> mainList)
 {
     std::ofstream db;
     // .sl isnt a real filetype, it was made up for this tutorial
@@ -10,9 +10,12 @@ void Database::write(std::vector<std::string> list)
     // check if file successfully opened
     if(db.is_open())
     {
-        for (unsigned int list_index = 0; list_index < list.size(); list_index++)
+        for (unsigned int user_index=0; user_index < mainList[user_index].size(); user_index++)
         {
-            db << list[list_index] << "\n";
+            for (unsigned int list_index=0; list_index < mainList[user_index][list_index].size(); list_index++)
+            {
+                db << mainList[user_index][list_index] << '\n';
+            }
         }
     } else 
     {
@@ -22,18 +25,38 @@ void Database::write(std::vector<std::string> list)
     db.close();
 }
 
-void Database::read()
+std::vector<std::vector<std::string>> Database::read()
 {
     std::string line;
     std::ifstream db;
     db.open("db/lists.sl");
 
+    std::vector<std::string> userList;
+
     // check if file successfully opened
     if(db.is_open())
     {
+        // Read each line in ifstream to string using '\n' delimeter
         while(getline(db, line, '\n'))
         {
-            std::cout << line << '\n';
+
+            if(line.front() == '#')
+            {
+                std::cout << "Found a hashtag: " << line << '\n';
+                line.erase(line.begin()); // remove the first char
+                userList.push_back(line);
+            }
+            else if(line.front() == '%')
+            {
+                std::cout << "Found a percentage: " << line << '\n';
+                mainList.push_back(userList);
+                userList.clear();
+            }
+            else 
+            {
+                std::cout << "Found an item: " << line << '\n';
+                userList.push_back(line);
+            }
         }
     } else 
     {
@@ -41,4 +64,6 @@ void Database::read()
     }
 
     db.close();
+
+    return mainList;
 }

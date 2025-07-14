@@ -65,7 +65,7 @@ void List::delete_item()
 
     if(list.size())
     {
-        for (unsigned int list_index = 0; list_index < list.size(); list_index++)
+        for (size_t list_index = 0; list_index < list.size(); list_index++)
         {
             std::cout << list_index << ": " << list[list_index] << "\n";
         }
@@ -93,7 +93,7 @@ void List::print_list() {
     clear_screen();
     std::cout << "*** Printing List ***\n";
 
-    for (unsigned int list_index = 0; list_index < list.size(); list_index++)
+    for (size_t list_index = 0; list_index < list.size(); list_index++)
     {
         std::cout << " * " << list[list_index] << "\n";
     }
@@ -113,6 +113,26 @@ void List::print_list() {
     {
         std::cout << "Invalid choice. Quitting...\n";
     }
+}
+
+void List::find_userList() {
+    bool userFound = false;
+
+    clear_screen();
+    std::cout << "*** Welcome " << name << " ***\n";
+
+    for (size_t user_index = 0; user_index < mainList.size(); user_index++)
+    {
+        std::cout << mainList[user_index][0] << '\n';
+        if(mainList[user_index][0] == name)
+        {
+            std::cout << "User has been found: " << mainList[user_index][0] << '\n';
+            list = mainList[user_index];
+            userFound = true;
+            break;
+        }
+    }
+    
 }
 
 void List::clear_screen()
